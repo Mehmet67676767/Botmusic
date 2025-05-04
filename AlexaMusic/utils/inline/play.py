@@ -9,11 +9,6 @@ This program is free software: you can redistribute it and can modify as you wan
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from config import SUPPORT_GROUP, SUPPORT_CHANNEL
 import random
-def stream_markup_timer(_, videoid, chat_id, played, dur):
-    import random
-    bars = ["▁▂▃▄▅▆▇█", "█▇▆▅▄▃▂▁", "▉▊▋▌▍▎▏▏"]  # Farklı animasyon barları
-    bar = random.choice(bars)
-
 
 # Zaman çubuğu üretici
 def generate_dynamic_bar(played, dur, length=13):
@@ -28,7 +23,9 @@ def generate_dynamic_bar(played, dur, length=13):
 
 # Dinamik zaman paneli
 def stream_markup_timer(_, videoid, chat_id, played, dur):
-    bar = generate_dynamic_bar(played, dur)
+    import random
+    bars = ["▁▂▃▄▅▆▇█", "█▇▆▅▄▃▂▁", "▉▊▋▌▍▎▏▏"]  # Farklı animasyon barları
+    bar = random.choice(bars)
     buttons = [
         [InlineKeyboardButton(text=f"{played} {bar} {dur}", callback_data="GetTimer")],
         [
