@@ -41,7 +41,7 @@ class AlexaBot(Client):
             await self.send_video(
                 chat_id=config.LOG_GROUP_ID,
                 video="resources/startup.mp4",
-                caption="✅ Alexa Asistan Aktif!\n🎬 Her şey kontrol edildi, yayına hazırız!",
+                caption="✅ Sıla Asistan Aktif!\n🎬 Her şey kontrol edildi, yayına hazırız!",
                 supports_streaming=True
             )
         except:
