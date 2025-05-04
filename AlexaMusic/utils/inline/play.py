@@ -1,4 +1,4 @@
-Copyright (C) 2025 by Alexa_Help @ Github, < https://github.com/TheTeamAlexa >
+#Copyright (C) 2025 by Alexa_Help @ Github, < https://github.com/TheTeamAlexa >
 
 Subscribe On YT < Jankari Ki Duniya >. All rights reserved. © Alexa © Yukki.
 
@@ -8,15 +8,9 @@ This program is free software: you can redistribute it and can modify as you wan
 
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton from config import SUPPORT_GROUP, SUPPORT_CHANNEL
 
-Dinamik zaman çubuğu üretici
+def generate_dynamic_bar(played, dur, length=13): try: played_sec = int(played.split(":")[0]) * 60 + int(played.split(":")[1]) dur_sec = int(dur.split(":")[0]) * 60 + int(dur.split(":")[1]) filled_len = int(length * played_sec / dur_sec) bar = "▰" * filled_len + "▱" * (length - filled_len) return bar except: return "▰" * length
 
-def generate_dynamic_bar(played, dur, length=10): try: played_sec = int(played.split(":")[0]) * 60 + int(played.split(":")[1]) dur_sec = int(dur.split(":")[0]) * 60 + int(dur.split(":")[1]) filled_len = int(length * played_sec / dur_sec) bar = "█" * filled_len + "─" * (length - filled_len) return bar except: return "█" * length
-
-Etkileşimli oynatma arayüzü
-
-def stream_markup_timer(_, videoid, chat_id, played, dur): bar = generate_dynamic_bar(played, dur) buttons = [ [InlineKeyboardButton(text=f"{played} {bar} {dur}", callback_data="GetTimer")], [ InlineKeyboardButton("▶️ Oynat", callback_data=f"ADMIN Resume|{chat_id}"), InlineKeyboardButton("⏸ Duraklat", callback_data=f"ADMIN Pause|{chat_id}") ], [ InlineKeyboardButton("⏭ Geç", callback_data=f"ADMIN Skip|{chat_id}"), InlineKeyboardButton("⏹ Sonlandır", callback_data=f"ADMIN Stop|{chat_id}") ], [ InlineKeyboardButton("ℹ️ Şarkı Bilgisi", callback_data=f"info {videoid}"), InlineKeyboardButton("⭐ Listeye Ekle", callback_data=f"add_playlist {videoid}") ], [ InlineKeyboardButton("❤️ Beğen", callback_data=f"like {videoid}"), InlineKeyboardButton("👎 Beğenme", callback_data=f"dislike {videoid}") ], [InlineKeyboardButton("⚙️ Gelişmiş Ayarlar", callback_data=f"PanelMarkup {videoid}|{chat_id}")], [InlineKeyboardButton("❌ Paneli Kapat", callback_data="close")] ] return buttons
-
-Diğer örnek arayüzler
+def stream_markup_timer(_, videoid, chat_id, played, dur): bar = generate_dynamic_bar(played, dur) buttons = [ [InlineKeyboardButton(text=f"{played} {bar} {dur}", callback_data="GetTimer")], [ InlineKeyboardButton("⏮", callback_data=f"ADMIN Previous|{chat_id}"), InlineKeyboardButton("⏸", callback_data=f"ADMIN Pause|{chat_id}"), InlineKeyboardButton("▶️", callback_data=f"ADMIN Resume|{chat_id}"), InlineKeyboardButton("⏭", callback_data=f"ADMIN Skip|{chat_id}") ], [ InlineKeyboardButton("⭐ Listeye Ekle", callback_data=f"add_playlist {videoid}"), InlineKeyboardButton("🎧 Şarkı Bilgisi", callback_data=f"info {videoid}") ], [ InlineKeyboardButton("❤️ Beğen", callback_data=f"like {videoid}"), InlineKeyboardButton("👎 Beğenme", callback_data=f"dislike {videoid}") ], [ InlineKeyboardButton("⚙ Ayarlar", callback_data=f"PanelMarkup {videoid}|{chat_id}"), InlineKeyboardButton("❌ Kapat", callback_data="close") ] ] return buttons
 
 def stream_markup(_, videoid, chat_id): return [[InlineKeyboardButton("▶️ Oynat", callback_data=f"add_playlist {videoid}")]]
 
@@ -24,15 +18,7 @@ def telegram_markup(_, chat_id): return [[ InlineKeyboardButton("⚙️ Ayarlar"
 
 def close_keyboard(): return InlineKeyboardMarkup([[InlineKeyboardButton(text="❌ Kapat", callback_data="close")]])
 
-## Inline without Timer Bar
 
-
-def stream_markup(_, videoid, chat_id):
-    buttons = [
-        [
-            InlineKeyboardButton(
-                text=_["PL_B_2"],
-                callback_data=f"add_playlist {videoid}",
            )
         ],
     ]
