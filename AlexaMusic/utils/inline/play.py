@@ -1,80 +1,124 @@
-#Copyright (C) 2025 by Alexa_Help @ Github, < https://github.com/TheTeamAlexa >
 
-#Subscribe On YT < Jankari Ki Duniya >. All rights reserved. © Alexa © Yukki.
+# Copyright (C) 2025 by Alexa_Help @ Github, < https://github.com/TheTeamAlexa >
+# Subscribe On YT < Jankari Ki Duniya >. All rights reserved. © Alexa © Yukki.
 
-""" TheTeamAlexa is a project of Telegram bots with variety of purposes. Copyright (c) 2021 ~ Present Team Alexa https://github.com/TheTeamAlexa
+"""
+TheTeamAlexa is a project of Telegram bots with variety of purposes.
+Copyright (c) 2021 ~ Present Team Alexa <https://github.com/TheTeamAlexa>
 
-This program is free software: you can redistribute it and can modify as you want or you can collabe if you have new ideas. """
+This program is free software: you can redistribute it and can modify
+as you want or you can collabe if you have new ideas.
+"""
+
 
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from config import SUPPORT_GROUP, SUPPORT_CHANNEL
 import random
 
-# Zaman çubuğu üretici
-def generate_dynamic_bar(played, dur, length=13):
-    try:
-        played_sec = int(played.split(":")[0]) * 60 + int(played.split(":")[1])
-        dur_sec = int(dur.split(":")[0]) * 60 + int(dur.split(":")[1])
-        filled_len = int(length * played_sec / dur_sec)
-        bar = "▰" * filled_len + "▱" * (length - filled_len)
-        return bar
-    except:
-        return "▰" * length
+## After Edits with Timer Bar
 
-# Dinamik zaman paneli
+
+selections = [
+    "▁▄▂▇▄▅▄▅▃",
+    "▁▃▇▂▅▇▄▅▃",
+    "▃▁▇▂▅▃▄▃▅",
+    "▃▄▂▄▇▅▃▅▁",
+    "▁▃▄▂▇▃▄▅▃",
+    "▃▁▄▂▅▃▇▃▅",
+    "▁▇▄▂▅▄▅▃▄",
+    "▁▃▅▇▂▅▄▃▇",
+    "▃▅▂▅▇▁▄▃▁",
+    "▇▅▂▅▃▄▃▁▃",
+    "▃▇▂▅▁▅▄▃▁",
+    "▅▄▇▂▅▂▄▇▁",
+    "▃▅▂▅▃▇▄▅▃",
+]
+
+
+## After Edits with Timer Bar
+
+
+from pyrogram.types import InlineKeyboardButton
+
 def stream_markup_timer(_, videoid, chat_id, played, dur):
     import random
     bars = ["▁▂▃▄▅▆▇█", "█▇▆▅▄▃▂▁", "▉▊▋▌▍▎▏▏"]  # Farklı animasyon barları
     bar = random.choice(bars)
+
     buttons = [
-        [InlineKeyboardButton(text=f"{played} {bar} {dur}", callback_data="GetTimer")],
         [
-            InlineKeyboardButton("⏮", callback_data=f"ADMIN Previous|{chat_id}"),
-            InlineKeyboardButton("⏸", callback_data=f"ADMIN Pause|{chat_id}"),
+            InlineKeyboardButton(
+                text=f"{played} {bar} {dur}",
+                callback_data="GetTimer"
+            )
+        ],
+        [
             InlineKeyboardButton("▶️", callback_data=f"ADMIN Resume|{chat_id}"),
-            InlineKeyboardButton("⏭", callback_data=f"ADMIN Skip|{chat_id}")
+            InlineKeyboardButton("⏸️", callback_data=f"ADMIN Pause|{chat_id}"),
+            InlineKeyboardButton("⏭️", callback_data=f"ADMIN Skip|{chat_id}"),
+            InlineKeyboardButton("⏹️", callback_data=f"ADMIN Stop|{chat_id}"),
         ],
         [
-            InlineKeyboardButton("⭐ Listeye Ekle", callback_data=f"add_playlist {videoid}"),
-            InlineKeyboardButton("🎧 Şarkı Bilgisi", callback_data=f"info {videoid}")
+            InlineKeyboardButton("✅ ʟɪsᴛᴇᴍᴇ ᴇᴋʟᴇ ", callback_data=f"add_playlist {videoid}"),
+            InlineKeyboardButton("⚙️ ᴄ-ᴘᴀɴᴇʟ", callback_data=f"PanelMarkup {videoid}|{chat_id}"),
         ],
-        [
-            InlineKeyboardButton("👍 0", callback_data=f"like {videoid}"),
-            InlineKeyboardButton("👎 0", callback_data=f"dislike {videoid}")
-        ],
-        [
-            InlineKeyboardButton("📃 Kuyruk", callback_data=f"queue {chat_id}"),
-            InlineKeyboardButton("⭐ Favorilerim", callback_data="my_favs")
-        ],
-        [
-            InlineKeyboardButton("🎉 Parti Mod", callback_data=f"mode party"),
-            InlineKeyboardButton("☁️ Chill Mod", callback_data=f"mode chill")
-        ],
-        [
-            InlineKeyboardButton("➕ Şarkı İste", switch_inline_query_current_chat="Şarkı adı...")
-        ],
-        [
-            InlineKeyboardButton("⚙ Ayarlar", callback_data=f"PanelMarkup {videoid}|{chat_id}"),
-            InlineKeyboardButton("❌ Kapat", callback_data="close")
-        ]
     ]
-    return InlineKeyboardMarkup(buttons)
+    return buttons
 
-# Basit oynatma paneli
+
+def telegram_markup_timer(_, videoid, chat_id, played, dur):
+    bar = random.choice(selections)
+    buttons = [
+        [InlineKeyboardButton(text=_["CLOSEMENU_BUTTON"], callback_data="close"),
+            InlineKeyboardButton(
+                text=f"{played} •{bar}• {dur}",
+                callback_data="GetTimer",
+            )
+        ],
+        [
+            InlineKeyboardButton(
+                text=_["PL_B_2"],
+                callback_data=f"add_playlist {videoid}",
+            ),
+            InlineKeyboardButton(text="𝖮𝗐𝗇𝖾𝗋", url=f"https://t.me/Jankari_Ki_Duniya"),
+        ],
+        [
+            InlineKeyboardButton(
+                text=_["PL_B_3"],
+                callback_data=f"PanelMarkup None|{chat_id}",
+            ),
+            InlineKeyboardButton(text="𝖲𝗎𝗉𝗉𝗈𝗋𝗍 💬", url=SUPPORT_GROUP),
+        ],
+    ]
+    return buttons
+
+
+## Inline without Timer Bar
+
+
 def stream_markup(_, videoid, chat_id):
-    return InlineKeyboardMarkup([
-        [InlineKeyboardButton("▶️ Oynat", callback_data=f"add_playlist {videoid}")]
-    ])
+    buttons = [
+        [
+            InlineKeyboardButton(
+                text=_["PL_B_2"],
+                callback_data=f"add_playlist {videoid}",
+           )
+        ],
+    ]
+    return buttons
 
-# Telegram komutu için panel
+
 def telegram_markup(_, chat_id):
     buttons = [
         [
-            InlineKeyboardButton(text="⚙ Panel", callback_data=f"PanelMarkup None|{chat_id}"),
-            InlineKeyboardButton(text=_["CLOSEMENU_BUTTON"], callback_data="close")
-        ]
+            InlineKeyboardButton(
+                text=_["PL_B_3"],
+                callback_data=f"PanelMarkup None|{chat_id}",
+            ),
+            InlineKeyboardButton(text=_["CLOSEMENU_BUTTON"], callback_data="close"),
+        ],
     ]
-    return InlineKeyboardMarkup(buttons)
+    return buttons
 
 
 ## By Anon
