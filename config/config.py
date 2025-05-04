@@ -107,9 +107,7 @@ clean = {}
 
 autoclean = []
 
-START_IMG_URL = getenv(
-    "START_IMG_URL", "https://resmim.net/cdn/2025/05/03/NLGzg3.jpg"
-)
+START_VIDEO_URL = "https://files.fm/f/23u8f6pqfq"  # Videonu yükleyip bu URL'yi gir
 
 PING_IMG_URL = getenv(
     "PING_IMG_URL",
