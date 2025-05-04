@@ -188,9 +188,10 @@ async def start_comm(client, message: Message, _):
         out = private_panel(_, app.username, OWNER)
         if config.START_IMG_URL:
             try:
-                await message.reply_photo(
-                    photo=config.START_IMG_URL,
-                    caption=_["start_2"].format(config.MUSIC_BOT_NAME),
+                await message.reply_video(
+    video=config.START_VIDEO_URL,
+    caption=_["start_2"].format(config.MUSIC_BOT_NAME),
+   
                     reply_markup=InlineKeyboardMarkup(out),
                 )
             except:
