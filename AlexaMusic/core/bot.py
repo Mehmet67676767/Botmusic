@@ -38,8 +38,11 @@ class AlexaBot(Client):
         self.id = get_me.id
         self.mention = get_me.mention
         try:
-            await self.send_message(
-                config.LOG_GROUP_ID, "» bot aktif ✅ \n\n asistan kontrol ediliyor...."
+            await self.send_video(
+                chat_id=config.LOG_GROUP_ID,
+                video="resources/startup.mp4",
+                caption="✅ Alexa Asistan Aktif!\n🎬 Her şey kontrol edildi, yayına hazırız!",
+                supports_streaming=True
             )
         except:
             LOGGER(__name__).error(
