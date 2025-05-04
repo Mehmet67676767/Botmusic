@@ -107,7 +107,7 @@ clean = {}
 
 autoclean = []
 
-START_VIDEO_URL = "https://files.fm/f/23u8f6pqfq"  # Videonu yükleyip bu URL'yi gir
+START_VIDEO_URL = "https://streamable.com/8h2y4v"  # Videonu yükleyip bu URL'yi gir
 
 PING_IMG_URL = getenv(
     "PING_IMG_URL",
