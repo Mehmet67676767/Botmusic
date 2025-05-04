@@ -1,14 +1,12 @@
 #Copyright (C) 2025 by Alexa_Help @ Github, < https://github.com/TheTeamAlexa >
 
-#Subscribe On YT < Jankari Ki Duniya >. All rights reserved. © Alexa © Yukki.
+Subscribe On YT < Jankari Ki Duniya >. All rights reserved. © Alexa © Yukki.
 
 """ TheTeamAlexa is a project of Telegram bots with variety of purposes. Copyright (c) 2021 ~ Present Team Alexa https://github.com/TheTeamAlexa
 
 This program is free software: you can redistribute it and can modify as you want or you can collabe if you have new ideas. """
 
-from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
-from config import SUPPORT_GROUP, SUPPORT_CHANNEL
-import random
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton from config import SUPPORT_GROUP, SUPPORT_CHANNEL import random
 
 def generate_dynamic_bar(played, dur, length=13): try: played_sec = int(played.split(":")[0]) * 60 + int(played.split(":")[1]) dur_sec = int(dur.split(":")[0]) * 60 + int(dur.split(":")[1]) filled_len = int(length * played_sec / dur_sec) bar = "▰" * filled_len + "▱" * (length - filled_len) return bar except: return "▰" * length
 
@@ -16,14 +14,7 @@ def stream_markup_timer(_, videoid, chat_id, played, dur): bar = generate_dynami
 
 def stream_markup(_, videoid, chat_id): return [[InlineKeyboardButton("▶️ Oynat", callback_data=f"add_playlist {videoid}")]]
 
-def telegram_markup(_, chat_id): return [[ InlineKeyboardButton("⚙️ Ayarlar", callback_data=f"PanelMarkup None|{chat_id}"), InlineKeyboardButton("❌ Kapat", callback_data="close") ]]
-
-def close_keyboard(): return InlineKeyboardMarkup([[InlineKeyboardButton(text="❌ Kapat", callback_data="close"),
-        ],
-    ]
-    return buttons
-
-
+def telegram_markup(, chat_id): buttons = [ [ InlineKeyboardButton(text=["PL_B_3"], callback_data=f"PanelMarkup None|{chat_id}"), InlineKeyboardButton(text=_["CLOSEMENU_BUTTON"], callback_data="close") ] ] return buttons
 
 def telegram_markup(_, chat_id):
     buttons = [
