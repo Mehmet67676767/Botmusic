@@ -93,10 +93,10 @@ async def gen_thumb(videoid):
         draw.text((5, 5), f"Alexa MusicBot", fill="white", font=name_font)
         draw.text(
             (600, 150),
-            "NOW PLAYING",
+            "Yayın başladı",
             fill="white",
             stroke_width=3,
-            stroke_fill="black",
+            stroke_fill="purple",
             font=font2,
         )
         for line in para:
@@ -122,19 +122,19 @@ async def gen_thumb(videoid):
                 )
         draw.text(
             (600, 450),
-            f"Views : {views[:23]}",
+            f"görüntüleme: {views[:23]}",
             (255, 255, 255),
             font=arial,
         )
         draw.text(
             (600, 500),
-            f"Duration : {duration[:23]} Mins",
+            f"dakika : {duration[:23]} Mins",
             (255, 255, 255),
             font=arial,
         )
         draw.text(
             (600, 550),
-            f"Owner : Jankari Ki Duniya",
+            f"sahibi : Alya albora",
             (255, 255, 255),
             font=arial,
         )
@@ -209,7 +209,7 @@ async def gen_qthumb(videoid):
         draw.text((5, 5), f"Alexa MusicBot", fill="white", font=name_font)
         draw.text(
             (600, 150),
-            "ADDED THIS SONG IN QUEUE",
+            "sıraya eklendi",
             fill="white",
             stroke_width=3,
             stroke_fill="black",
@@ -238,19 +238,19 @@ async def gen_qthumb(videoid):
                 )
         draw.text(
             (600, 450),
-            f"Views : {views[:23]}",
+            f"görüntüleme: {views[:23]}",
             (255, 255, 255),
             font=arial,
         )
         draw.text(
             (600, 500),
-            f"Duration : {duration[:23]} Mins",
+            f"Dakika : {duration[:23]} Mins",
             (255, 255, 255),
             font=arial,
         )
         draw.text(
             (600, 550),
-            f"Owner : Jankari Ki Duniya",
+            f"sahibi : Alya albora",
             (255, 255, 255),
             font=arial,
         )
