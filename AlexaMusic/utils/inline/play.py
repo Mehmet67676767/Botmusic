@@ -1,28 +1,26 @@
-#Copyright (C) 2025 by Alexa_Help @ Github, < https://github.com/TheTeamAlexa >
+Copyright (C) 2025 by Alexa_Help @ Github, < https://github.com/TheTeamAlexa >
 
-#Subscribe On YT < Jankari Ki Duniya >. All rights reserved. © Alexa © Yukki.
+Subscribe On YT < Jankari Ki Duniya >. All rights reserved. © Alexa © Yukki.
 
-#""" TheTeamAlexa is a project of Telegram bots with variety of purposes. Copyright (c) 2021 ~ Present Team Alexa https://github.com/TheTeamAlexa
+""" TheTeamAlexa is a project of Telegram bots with variety of purposes. Copyright (c) 2021 ~ Present Team Alexa https://github.com/TheTeamAlexa
 
-#This program is free software: you can redistribute it and can modify as you want or you can collabe if you have new ideas. """
+This program is free software: you can redistribute it and can modify as you want or you can collabe if you have new ideas. """
 
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton from config import SUPPORT_GROUP, SUPPORT_CHANNEL
 
 def generate_dynamic_bar(played, dur, length=13): try: played_sec = int(played.split(":")[0]) * 60 + int(played.split(":")[1]) dur_sec = int(dur.split(":")[0]) * 60 + int(dur.split(":")[1]) filled_len = int(length * played_sec / dur_sec) bar = "▰" * filled_len + "▱" * (length - filled_len) return bar except: return "▰" * length
 
-def stream_markup_timer(_, videoid, chat_id, played, dur): bar = generate_dynamic_bar(played, dur) buttons = [ [InlineKeyboardButton(text=f"{played} {bar} {dur}", callback_data="GetTimer")], [ InlineKeyboardButton("⏮", callback_data=f"ADMIN Previous|{chat_id}"), InlineKeyboardButton("⏸", callback_data=f"ADMIN Pause|{chat_id}"), InlineKeyboardButton("▶️", callback_data=f"ADMIN Resume|{chat_id}"), InlineKeyboardButton("⏭", callback_data=f"ADMIN Skip|{chat_id}") ], [ InlineKeyboardButton("⭐ Listeye Ekle", callback_data=f"add_playlist {videoid}"), InlineKeyboardButton("🎧 Şarkı Bilgisi", callback_data=f"info {videoid}") ], [ InlineKeyboardButton("❤️ Beğen", callback_data=f"like {videoid}"), InlineKeyboardButton("👎 Beğenme", callback_data=f"dislike {videoid}") ], [ InlineKeyboardButton("⚙ Ayarlar", callback_data=f"PanelMarkup {videoid}|{chat_id}"), InlineKeyboardButton("❌ Kapat", callback_data="close") ] ] return buttons
+def stream_markup_timer(_, videoid, chat_id, played, dur): bar = generate_dynamic_bar(played, dur) buttons = [ [InlineKeyboardButton(text=f"{played} {bar} {dur}", callback_data="GetTimer")], [ InlineKeyboardButton("⏮", callback_data=f"ADMIN Previous|{chat_id}"), InlineKeyboardButton("⏸", callback_data=f"ADMIN Pause|{chat_id}"), InlineKeyboardButton("▶️", callback_data=f"ADMIN Resume|{chat_id}"), InlineKeyboardButton("⏭", callback_data=f"ADMIN Skip|{chat_id}") ], [ InlineKeyboardButton("⭐ Listeye Ekle", callback_data=f"add_playlist {videoid}"), InlineKeyboardButton("🎧 Şarkı Bilgisi", callback_data=f"info {videoid}") ], [ InlineKeyboardButton("👍 0", callback_data=f"like {videoid}"), InlineKeyboardButton("👎 0", callback_data=f"dislike {videoid}") ], [ InlineKeyboardButton("📃 Kuyruk", callback_data=f"queue {chat_id}"), InlineKeyboardButton("⭐ Favorilerim", callback_data="my_favs") ], [ InlineKeyboardButton("🎉 Parti Mod", callback_data=f"mode party"), InlineKeyboardButton("☁️ Chill Mod", callback_data=f"mode chill") ], [ InlineKeyboardButton("➕ Şarkı İste", switch_inline_query_current_chat="Şarkı adı...") ], [ InlineKeyboardButton("⚙ Ayarlar", callback_data=f"PanelMarkup {videoid}|{chat_id}"), InlineKeyboardButton("❌ Kapat", callback_data="close") ] ] return buttons
 
 def stream_markup(_, videoid, chat_id): return [[InlineKeyboardButton("▶️ Oynat", callback_data=f"add_playlist {videoid}")]]
 
 def telegram_markup(_, chat_id): return [[ InlineKeyboardButton("⚙️ Ayarlar", callback_data=f"PanelMarkup None|{chat_id}"), InlineKeyboardButton("❌ Kapat", callback_data="close") ]]
 
-def close_keyboard(): return InlineKeyboardMarkup([[InlineKeyboardButton(text="❌ Kapat", callback_data="close")]])
-
-
-           )
+def close_keyboard(): return InlineKeyboardMarkup([[InlineKeyboardButton(text="❌ Kapat", callback_data="close"),
         ],
     ]
     return buttons
+
 
 
 def telegram_markup(_, chat_id):
