@@ -6,7 +6,10 @@
 
 This program is free software: you can redistribute it and can modify as you want or you can collabe if you have new ideas. """
 
-from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton from config import SUPPORT_GROUP, SUPPORT_CHANNEL import random
+
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+from config import SUPPORT_GROUP, SUPPORT_CHANNEL
+import random
 
 def generate_dynamic_bar(played, dur, length=13): try: played_sec = int(played.split(":")[0]) * 60 + int(played.split(":")[1]) dur_sec = int(dur.split(":")[0]) * 60 + int(dur.split(":")[1]) filled_len = int(length * played_sec / dur_sec) bar = "▰" * filled_len + "▱" * (length - filled_len) return bar except: return "▰" * length
 
