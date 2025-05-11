@@ -1,8 +1,1 @@
-{
-  "name": "alexa-music-skill",
-  "version": "1.0.0",
-  "main": "lambda/index.js",
-  "dependencies": {
-    "ask-sdk-core": "^2.0.0"
-  }
-}
+
